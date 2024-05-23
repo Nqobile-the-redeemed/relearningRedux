@@ -1,0 +1,19 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "my relaearning soming i already learnt",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nqobile-the-redeemed/relearningRedux.git"
+  },
+  "author": "kobi sama",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nqobile-the-redeemed/relearningRedux/issues"
+  },
+  "homepage": "https://github.com/Nqobile-the-redeemed/relearningRedux#readme"
+}
