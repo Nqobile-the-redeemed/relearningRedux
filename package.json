@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Nqobile-the-redeemed/relearningRedux/issues"
   },
-  "homepage": "https://github.com/Nqobile-the-redeemed/relearningRedux#readme"
+  "homepage": "https://github.com/Nqobile-the-redeemed/relearningRedux#readme",
+  "dependencies": {
+    "redux": "^5.0.1"
+  }
 }
