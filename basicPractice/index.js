@@ -1,7 +1,10 @@
 const redux = require('redux');
+const reduxLogger = require('redux-logger');
 const createStore = redux.createStore;
 const bindActionCreators = redux.bindActionCreators;
-
+const combineReducers = redux.combineReducers;
+const applyMiddleware = redux.applyMiddleware;
+const logger = reduxLogger.createLogger();
 
 const anAdventureOffALifeTime = `
 In a quiet room, the boy would sit,
@@ -167,40 +170,18 @@ function serviceUpdated(serviceName, serviceDetails){
 }
 
 //state
-const initialState = {
-    posts: [],
+
+const initialServicesState = {
     services: []
 }
 
+const initialPostsState = {
+    posts: []
+}
+
 //In Redux, a reducer is a pure function that takes the current state and an action as arguments and returns a new state. Reducers specify how the application's state changes in response to actions sent to the store. The idea of reducers comes from the concept of reducing a collection of values down to a single value.
-const reducer = (state = initialState, action) => {
+const servicesReducer = (state = initialServicesState, action) => {
     switch(action.type) {
-        case BLOG_POSTS_UPLOADED: {
-            return {
-                ...state,
-                posts: [...state.posts, ...action.payload]
-            }
-        };
-        case BLOG_POST_DELETED: {
-            return {
-                ...state,
-                posts: state.posts.filter(post => post.title !== action.payload)
-            }
-        };
-        case BLOG_POST_UPDATED: {
-            return {
-                ...state,
-                posts: state.posts.map(post => {
-                    if(post.title === action.title){
-                        return {
-                            ...post,
-                            content: action.body
-                        }
-                    }
-                    return post;
-                })
-            }
-        };
         case SERVICE_ADDED: {
             return {
                 ...state,
@@ -231,13 +212,51 @@ const reducer = (state = initialState, action) => {
     }
 }
 
-const store = createStore(reducer);
+//In Redux, a reducer is a pure function that takes the current state and an action as arguments and returns a new state. Reducers specify how the application's state changes in response to actions sent to the store. The idea of reducers comes from the concept of reducing a collection of values down to a single value.
+const postsReducer = (state = initialPostsState, action) => {
+    switch(action.type) {
+        case BLOG_POSTS_UPLOADED: {
+            return {
+                ...state,
+                posts: [...state.posts, ...action.payload]
+            }
+        };
+        case BLOG_POST_DELETED: {
+            return {
+                ...state,
+                posts: state.posts.filter(post => post.title !== action.payload)
+            }
+        };
+        case BLOG_POST_UPDATED: {
+            return {
+                ...state,
+                posts: state.posts.map(post => {
+                    if(post.title === action.title){
+                        return {
+                            ...post,
+                            content: action.body
+                        }
+                    }
+                    return post;
+                })
+            }
+        };
+        
+        default: return state;
+    }
+}
+
+//combine reducers
+const rootReducer = combineReducers({
+    posts: postsReducer,
+    services: servicesReducer
+});
+
+const store = createStore(rootReducer, applyMiddleware(logger));
 
 //subscribe to the store
 console.log('initial state',store.getState());
-const unsubscribe = store.subscribe(() => {
-    console.log('state updated', store.getState());
-});
+const unsubscribe = store.subscribe(() => {});
 
 //dispatch an action
 store.dispatch(blogPostsUploaded([
