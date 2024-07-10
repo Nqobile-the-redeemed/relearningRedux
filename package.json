@@ -17,6 +17,11 @@
   },
   "homepage": "https://github.com/Nqobile-the-redeemed/relearningRedux#readme",
   "dependencies": {
-    "redux": "^5.0.1"
+    "@reduxjs/toolkit": "^2.2.6",
+    "axios": "^1.7.2",
+    "logger": "^0.0.1",
+    "redux": "^5.0.1",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^3.1.0"
   }
 }
