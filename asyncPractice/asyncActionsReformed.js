@@ -1,11 +1,7 @@
 import { createStore, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
-const redux = require('redux')
-const thunkMiddleware = require('redux-thunk').default
-const axios = require('axios')
-//const { configureStore } = require('@reduxjs/toolkit');
-// const createStore = redux.createStore
-// const applyMiddleware = redux.applyMiddleware
+import * as thunk from 'redux-thunk';
+import axios from 'axios';
+import * as redux from 'redux';
 
 const initialState = {
     loading: false,
@@ -74,15 +70,6 @@ const reducer = (state = initialState, action) => {
             }
     }
 }
-
-
-// const store = createStore(reducer, applyMiddleware(thunk));
-
-
-// const store = configureStore({
-//     reducer: reducer,
-//     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunkMiddleware),
-//   });
 
 const store = createStore(reducer, applyMiddleware(thunk));
 
