@@ -1,7 +1,5 @@
-import { createStore, applyMiddleware } from 'redux'
-import * as thunk from 'redux-thunk';
+import { configureStore } from '@reduxjs/toolkit';
 import axios from 'axios';
-import * as redux from 'redux';
 
 const initialState = {
     loading: false,
@@ -71,7 +69,9 @@ const reducer = (state = initialState, action) => {
     }
 }
 
-const store = createStore(reducer, applyMiddleware(thunk));
+const store = configureStore({
+    reducer: reducer
+});
 
 store.subscribe(() => { console.log(store.getState()) })
 
