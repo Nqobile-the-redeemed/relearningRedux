@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 
-function BlogContainerComponent({ blogDataBase }) {
+function BlogContainerComponent({ blogDataBase, setBlogDataBase }) {
 
 
 
@@ -16,7 +16,12 @@ function BlogContainerComponent({ blogDataBase }) {
   })
 
   const handleDropDownChange = (e) => {
-    setSelectedValue(e.target.value);
+    const value = e.target.value;
+    setSelectedValue(value);
+    setFormData({
+      ...formData,
+      author: value
+    });
   };
 
   const handleChange = (e) => {
@@ -28,8 +33,11 @@ function BlogContainerComponent({ blogDataBase }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    blogDataBase.push(formData)
+    console.log(formData);
+    // Append formData to the end of blogDataBase array
+    setBlogDataBase(currentDataBase => [...currentDataBase, formData]);
     console.log(blogDataBase);
+    // Reset formData to initial state
     setFormData({
       title: '',
       content: '',
@@ -40,35 +48,31 @@ function BlogContainerComponent({ blogDataBase }) {
 
   return (
     <div>
-      <h3>Create Your Blog</h3>
+      <h3 className='subheading poppins-medium'>Create Your Blog</h3>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>name:
-            <input type='text' name='title' placeholder='Title' value={formData.title} onChange={handleChange} />
-          </label>
+        <div className='inputDiv'>
+          <label className='inputLabel' htmlFor='title'>Blog Title:</label>
+          <input className='smolInput' type='text' id='title' name='title' placeholder='Title' value={formData.title} onChange={handleChange} />
         </div>
-        <div>
-          <label>Blog Post:
-            <input type='textarea' name='content' placeholder='Content' value={formData.content} onChange={handleChange} />
-          </label>
+        <div className='inputDiv'>
+          <label className='inputLabel' htmlFor='content'>Blog Post:</label>
+          <textarea className='bigBoiInput' id='content' name='content' placeholder='Content' value={formData.content} onChange={handleChange}></textarea>
         </div>
-        <div>
-          <label>Image:
-            <input type='text' name='image' placeholder='Image URL' value={formData.image} onChange={handleChange} />
-          </label>
+        <div className='inputDiv'>
+          <label className='inputLabel' htmlFor='image'>Image:</label>
+          <input className='smolInput' type='text' id='image' name='image' placeholder='Image URL' value={formData.image} onChange={handleChange} />
         </div>
-        <div>
-          <label>Author:
-            <select value={selectedValue} onChange={handleDropDownChange}>
-              <option value=''>Select Author</option>
-              <option value='muzala'>Muzala Amoah</option>
-              <option value='Nqobile'>Nqobile Madziba</option>
-              <option value='Angel'>Angel Siringwani</option>
-              <option value='David'>David Mkhosi</option>
-            </select>
-          </label>
+        <div className='inputDiv'>
+          <label className='inputLabel' htmlFor='author'>Author:</label>
+          <select className='dropDownInput' id='author' value={selectedValue} onChange={handleDropDownChange}>
+            <option className='optionThing' value=''>Select Author</option>
+            <option className='optionThing' value='Muzala'>Muzala Amoah</option>
+            <option className='optionThing' value='Nqobile'>Nqobile Madziba</option>
+            <option className='optionThing' value='Angel'>Angel Siringwani</option>
+            <option className='optionThing' value='David'>David Mkhosi</option>
+          </select>
         </div>
-        <button type='submit'>Create Blog</button>
+        <button className='superButton' type='submit'>Create Blog</button>
       </form>
     </div>
   )

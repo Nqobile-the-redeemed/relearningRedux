@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import './App.css'
 import BlogContainerComponent from './components/BlogContainer'
 import BlogPosts from './components/BlogPosts'
@@ -9,59 +9,83 @@ function App() {
   let endPoint = 'https://api.unsplash.com/photos/?client_id=${clientID}'
 
   const [imageData, setImageData] = useState([])
- 
-  let blogDataBase = [
+  const [isLoading, setIsLoading] = useState(true); // Add a loading state
+  const [blogDataBase, setBlogDataBase] = useState([
     {
-      title: 'The first one Ever',
-      content: 'Ill be the first to write a blog post',
-      image: 'https://source.unsplash.com/photos/a-large-mountain-with-a-sky-full-of-stars-TzocKawlF4E',
-      author: 'Nqobile'
+      title: '',
+      content: '',
+      author: ''
     }
-  ]
+  ])
 
-  let blogAuthors = [{
-    name: 'muzala',
-    image: 'https://source.unsplash.com/photos/a-cat-standing-in-the-middle-of-a-field-yERFjCBsM1E'
-  },
-  {
-    name: 'Nqobile',
-    image: 'https://source.unsplash.com/photos/a-woman-taking-a-picture-of-herself-in-a-mirror-463mDKXg8Js'
-  },
-  {
-    name: 'Angel',
-    image: 'https://source.unsplash.com/photos/a-walkway-in-a-greenhouse-with-lots-of-plants-fag7vJEpUFM'
-  },
-  {
-    name: 'David',
-    image: 'https://source.unsplash.com/photos/a-couple-of-people-that-are-looking-in-a-window-KWocLB1EHIc'	
-  }]
+  // Use optional chaining to safely access nested properties
+  const blogAuthors = useMemo(() => [
+    {
+      name: 'Muzala',
+      image: imageData[0]?.urls?.regular
+    },
+    {
+      name: 'Nqobile',
+      image: imageData[1]?.urls?.regular
+    },
+    {
+      name: 'David',
+      image: imageData[2]?.urls?.regular
+    },
+    {
+      name: 'Angel',
+      image: imageData[3]?.urls?.regular
+    }
+  ], [imageData]); // Recompute only when imageData changes
+
+ 
+
 
   useEffect(() => {
     let clientID = 'JQ1oIAV-jX9sDeKyCaM6NodMwutPDaQSLTra5TY8NGQ';
-    let count = 10;
+    let count = 6;
     let endPoint = `https://api.unsplash.com/photos/random/?client_id=${clientID}&count=${count}`;
-
+  
     fetch(endPoint)
       .then(response => response.json())
       .then(data => {
         setImageData(data);
-        // Here you can set the data to your state
-        // For example, if you want to add the fetched data to your blogDataBase:
-        // setBlogDataBase(prevState => [...prevState, ...data]);
-        console.log(data); // Just logging the data for now
+        console.log(data);
+        setBlogDataBase([
+          {
+            title: 'The first one Ever',
+            content: 'Ill be the first to write a blog post',
+            image: data[4]?.urls?.regular,
+            author: 'Nqobile'
+          }]);
+        setIsLoading(false); // Set loading to false once data is fetched
       })
-      .catch(error => console.error('Error fetching data:', error));
+      .catch(error => {
+        console.error('Error fetching data:', error);
+        setIsLoading(false); // Ensure loading is set to false even if there's an error
+      });
   }, []); // Empty dependency array means this effect runs once on mount
+  
+  if (isLoading) {
+    return <div>Loading...</div>; // Show loading message or spinner
+  }
 
   return (
     <div className='App'>
       <div className='blog-creator'>
-        <h1>The Blog Creator</h1>
-        <BlogContainerComponent blogDataBase={blogDataBase} />
+        <h1 className='poppins-extrabold'>The Blog Creator</h1>
+        <BlogContainerComponent setBlogDataBase={setBlogDataBase} blogDataBase={blogDataBase} />
       </div>
       <div className='blog-list'>
-        <h1>The Blog List</h1>
-        <BlogPosts blogDataBase={blogDataBase} blogAuthors={blogAuthors} />
+        {imageData.length > 0 ? (
+          // Render your component that uses blogAuthors here
+          <div>
+          <h1 className='poppins-extrabold'>The Blog List</h1>
+          <BlogPosts blogDataBase={blogDataBase} blogAuthors={blogAuthors} />
+          </div>
+        ) : (
+          <p>Loading...</p> // Show a loading message or spinner
+        )}
       </div>
     </div>
   )
