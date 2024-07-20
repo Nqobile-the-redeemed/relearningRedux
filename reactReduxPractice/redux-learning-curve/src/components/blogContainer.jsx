@@ -1,13 +1,10 @@
 import React from 'react'
 import { useState } from 'react'
 
-function BlogContainerComponent({ blogDataBase, setBlogDataBase }) {
-
-
+function BlogContainerComponent({ blogDataBase, newBlog }) {
 
 
   const [selectedValue, setSelectedValue] = useState('');
-
   const [formData, setFormData] = useState({
     title: '',
     content: '',
@@ -34,8 +31,8 @@ function BlogContainerComponent({ blogDataBase, setBlogDataBase }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
-    // Append formData to the end of blogDataBase array
-    setBlogDataBase(currentDataBase => [...currentDataBase, formData]);
+    // Dispatch newBlog action with formData
+    newBlog(formData);
     console.log(blogDataBase);
     // Reset formData to initial state
     setFormData({
@@ -77,5 +74,7 @@ function BlogContainerComponent({ blogDataBase, setBlogDataBase }) {
     </div>
   )
 }
+
+
 
 export default BlogContainerComponent

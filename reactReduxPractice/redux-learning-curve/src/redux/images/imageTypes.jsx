@@ -1,0 +1,1 @@
+const NEW_IMAGES = 'NEW_IMAGES';
