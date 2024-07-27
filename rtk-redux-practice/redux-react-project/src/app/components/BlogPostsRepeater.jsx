@@ -1,10 +1,11 @@
 import React from 'react'
 import BlogCards from './BlogCards'
+import { useSelector } from 'react-redux';
 
-function BlogPostsRepeater({ posts }) {
+function BlogPostsRepeater({ blogDatabase }) {
   return (
     <div className='blogHolder'>
-      {posts.map((post, index) => (
+      {blogDatabase.map((post, index) => (
         <BlogCards key={index} postData={post} />
       ))}
     </div>
