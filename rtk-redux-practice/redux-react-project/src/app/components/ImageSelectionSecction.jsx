@@ -1,6 +1,12 @@
 import React from 'react'
 
 function ImageSelectionSecction({ selectedImage, togglePopUp }) {
+
+  const imageSelectionProcesss = () => {
+    togglePopUp(true)
+  }
+
+
   return (
     <div className='imageSelectionSection'>
         <div className='imageSelectionDiv'>
