@@ -3,6 +3,7 @@ import { useState } from 'react';
 import BlogPostsRepeater from '../components/BlogPostsRepeater'
 import BlogCreator from '../components/BlogCreator'
 import { useSelector } from 'react-redux';
+import PopUpImageSelector from '../components/PopUpImageSelector'
 
 function HomePage() {
 
@@ -14,6 +15,9 @@ function HomePage() {
 
   return (
     <div>
+
+        {coverImagePopUpState ? <PopUpImageSelector /> : null}
+
         <div className='blog-creator'>
             <h1 className='poppins-extrabold'>The Blog Creator</h1>
             <BlogCreator coverImage = {coverImage} setCoverImage = {setCoverImage} blogDatabase = {blogDatabase} setCoverImagePopUpState = {setCoverImagePopUpState} />

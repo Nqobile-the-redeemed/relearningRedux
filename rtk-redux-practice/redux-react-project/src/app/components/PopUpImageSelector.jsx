@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchImages } from '../'; // Adjust the path as necessary
+import { fetchImages } from '../features/images/imagesSlice'; // Adjust the path as necessary
 
 function PopUpImageSelector({ dataHolder }) {
 
