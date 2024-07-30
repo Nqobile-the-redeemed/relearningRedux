@@ -1,6 +1,6 @@
 import React from 'react'
 
-function ImageSelectionSecction({ selectedImage, togglePopUp }) {
+function ImageSelectionSection({ selectedImage, togglePopUp }) {
 
   const imageSelectionProcesss = () => {
     togglePopUp(true)
@@ -10,7 +10,7 @@ function ImageSelectionSecction({ selectedImage, togglePopUp }) {
   return (
     <div className='imageSelectionSection'>
         <div className='imageSelectionDiv'>
-          <button className='informButton'>
+          <button className='informButton' onClick={imageSelectionProcesss()}>
             Select Image
           </button>
           {selectedImage ? (
@@ -27,4 +27,4 @@ function ImageSelectionSecction({ selectedImage, togglePopUp }) {
   )
 }
 
-export default ImageSelectionSecction
+export default ImageSelectionSection

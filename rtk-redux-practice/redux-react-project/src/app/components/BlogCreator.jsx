@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { postBlog } from '../features/blogs/blogsSlice';
-import ImageSelectionSection from './ImageSelectionSecction';
+import ImageSelectionSection from './ImageSelectionSection';
 
 function BlogCreator({ blogDataBase, coverImage, setCoverImage, setCoverImagePopUpState }) {
 
