@@ -4,14 +4,18 @@ import { useSelector, useDispatch } from 'react-redux';
 import { postBlog } from '../features/blogs/blogsSlice';
 import ImageSelectionSection from './ImageSelectionSection';
 
-function BlogCreator({ blogDataBase, coverImage, setCoverImage, setCoverImagePopUpState }) {
+function BlogCreator({ blogDataBase}) {
 
     const dispatch = useDispatch();
+
+    
+    const [coverImage, setCoverImage] = useState(null);
 
 
     const [formData, setFormData] = useState({
       title: '',
-      content: ''
+      content: '',
+      coverImage: coverImage
     })
   
     const handleChange = (e) => {
@@ -30,7 +34,8 @@ function BlogCreator({ blogDataBase, coverImage, setCoverImage, setCoverImagePop
       // Reset formData to initial state
       setFormData({
         title: '',
-        content: ''
+        content: '',
+        coverImage: coverImage
       })
     }
 
@@ -46,7 +51,7 @@ function BlogCreator({ blogDataBase, coverImage, setCoverImage, setCoverImagePop
           <label className='inputLabel' htmlFor='content'>Blog Post:</label>
           <textarea className='bigBoiInput' id='content' name='content' placeholder='Content' value={formData.content} onChange={handleChange}></textarea>
         </div>
-        <ImageSelectionSection selectedImage={coverImage} togglePopUp = {setCoverImagePopUpState}/>
+        <ImageSelectionSection setCoverImage = {setCoverImage} coverImage = {coverImage} />
         <button className='superButton' type='submit'>Create Blog</button>
       </form>
     </div>

@@ -350,3 +350,77 @@
 .imageSelectorSection{}
 
 .popUpTitle{}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popUpBody {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 600px;
+}
+
+.closeModalSection {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.closeModalButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.imageSelectorSection {
+  text-align: center;
+}
+
+.popUpTitle {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+.loadingDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+.loadingText {
+  font-size: 1.2em;
+}
+
+.imageGridSection {
+  display: flex;
+  justify-content: center;
+}
+
+.imageGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px;
+}
+
+.imageButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}

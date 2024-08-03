@@ -3,24 +3,16 @@ import { useState } from 'react';
 import BlogPostsRepeater from '../components/BlogPostsRepeater'
 import BlogCreator from '../components/BlogCreator'
 import { useSelector } from 'react-redux';
-import PopUpImageSelector from '../components/PopUpImageSelector'
 
 function HomePage() {
-
-  const [coverImage, setCoverImage] = useState(null);
-  const [coverImagePopUpState, setCoverImagePopUpState] = useState(false);
-
 
   const blogDatabase = useSelector(state => state.blog.blogs)
 
   return (
     <div>
-
-      {coverImagePopUpState ? <PopUpImageSelector /> : null}
-
         <div className='blog-creator'>
             <h1 className='poppins-extrabold'>The Blog Creator</h1>
-            <BlogCreator coverImage = {coverImage} setCoverImage = {setCoverImage} blogDatabase = {blogDatabase} setCoverImagePopUpState = {setCoverImagePopUpState} />
+            <BlogCreator  blogDatabase = {blogDatabase} />
         </div>
         <div className='blog-list'>
           <h1 className='poppins-extrabold'>The Blog List</h1>
