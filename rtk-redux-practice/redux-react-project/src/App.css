@@ -341,7 +341,6 @@
   gap: 10px;
 }
 
-.popUpBody{}
 
 .closeModalSection{}
 
@@ -367,8 +366,8 @@
   background: white;
   padding: 20px;
   border-radius: 8px;
-  width: 80%;
-  max-width: 600px;
+  width: 90%;
+  max-width: 900px;
 }
 
 .closeModalSection {
@@ -377,9 +376,14 @@
 }
 
 .closeModalButton {
-  background: none;
-  border: none;
+  background-color: rgb(244, 244, 244);
+  /* border: 2px solid wheat; */
   cursor: pointer;
+  outline: none !important; /* Prevent default black outline */
+}
+
+.closeModalButton svg {
+  fill: red; /* Change the color to red */
 }
 
 .imageSelectorSection {
@@ -409,18 +413,135 @@
 
 .imageGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+  width: 100%;
+  justify-items: center; /* Centers items horizontally */
+  align-items: center;   /* Centers items vertically */
+}
+
+.omegaHolder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
   gap: 10px;
 }
 
 .imageButton {
   background: none;
-  border: none;
+  width: 200px; /* Set your desired width */
+  height: 200px; /* Set your desired height */
+  position: relative; /* Ensure the image can fill the button */
+  overflow: hidden; /* Hide any overflow */
   cursor: pointer;
+  outline: none !important; /* Prevent default black outline */
+}
+
+.selectedImageButton {
+  border: 4px solid #646cff;
 }
 
 .image {
   width: 100%;
-  height: auto;
+  height: 100%;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.confirmButton {
+  background-color: #646cff;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 1em;
   border-radius: 8px;
+  border-width: 2px;
+  border-color: #646cff;
+  border-style: solid;
+  padding: 0.5em 1em;
+  margin: 1em;
+}
+
+.selectionPreviewText{
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 1em;
+  color: grey;
+  width: 60%;
+}
+
+.confirmationSection{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding: 1em 2em;
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  width: 100%;
+  justify-content: space-between; /* or space-around */
+}
+
+.selectionPreviewDiv{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding: 1em 2em;
+  justify-content: space-between; /* or space-around */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  width: 500px;
+  height: 150px;
+  border-radius: 16px;
+  background-color: #ebebeb;
+}
+
+.selectionLayerPreviewDiv{
+  width: 100px;
+  position: relative; /* Ensure the div can contain the image properly */
+  height: 100px;
+}
+
+.selectionPreview{
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+  border-radius: 90px;
+}
+
+.noSelectionDiv{
+  display: flex;
+  flex-direction: row;
+  color: grey;
+  align-items: center; /* Vertically centers the child elements */
+  justify-content: center; /* Horizontally centers the child elements */
+  gap: 10px;
+  height: 50px;
+  width: 250px;
+  border-radius: 16px;
+  background-color: #ebebeb;
+}
+
+.noSelectionText{}
+
+.rejectSelection{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Aligns children to the start of the column */
+  justify-content: flex-start; /* Ensures children start at the top */
+  height: 100%;
+}
+
+.rejectionButton{
+  background-color: #ffffff;
+  border-radius: 8px;
+  border-style: solid;
+  padding: 0.15em 0.5em;
+}
+
+.rejectionButton svg {
+  fill: grey; /* Change the color to red */
 }

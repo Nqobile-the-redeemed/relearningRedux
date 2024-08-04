@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { Axios } from 'axios';
+import axios from 'axios'; // Correct import for axios
 
 const initialState = {
     loading: false,
@@ -12,7 +12,7 @@ let count = 6;
 let endPoint = `https://api.unsplash.com/photos/random/?client_id=${clientID}&count=${count}`;
 
 export const fetchImages = createAsyncThunk('images/fetchImages', () => {
-    return Axios
+    return axios
         .get(endPoint)
         .then(response => response.data);
 });

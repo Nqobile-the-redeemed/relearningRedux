@@ -1,14 +1,23 @@
 import React from 'react'
+import { useDispatch } from 'react-redux';
 import PopUpImageSelector from '../components/PopUpImageSelector'
 import { useState } from 'react';
+import { fetchImages } from '../features/images/imagesSlice';
 
 function ImageSelectionSection({ setCoverImage, coverImage }) {
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
+  const dispatch = useDispatch();
+
   const handleSelectImage = (image) => {
     setCoverImage(image);
     setIsPopupOpen(false);
+  };
+
+  const handleOpenPopup = () => {
+    dispatch(fetchImages()); // Dispatch the fetchImages action
+    setIsPopupOpen(true);
   };
 
 
@@ -21,7 +30,7 @@ function ImageSelectionSection({ setCoverImage, coverImage }) {
         onSelectImage={handleSelectImage}
       />
         <div className='imageSelectionDiv'>
-          <button className='informButton' onClick={() => setIsPopupOpen(true)} type='button'>
+          <button className='informButton' onClick={handleOpenPopup} type='button'>
             Select Image
           </button>
           {coverImage ? (
