@@ -11,6 +11,7 @@ function ImageSelectionSection({ setCoverImage, coverImage }) {
   const dispatch = useDispatch();
 
   const handleSelectImage = (image) => {
+    console.log(image);
     setCoverImage(image);
     setIsPopupOpen(false);
   };
@@ -35,7 +36,7 @@ function ImageSelectionSection({ setCoverImage, coverImage }) {
           </button>
           {coverImage ? (
             <div className='imagePreviewDiv'>
-              <img className='imagePreview' src={URL.createObjectURL(coverImage)} alt='cover' />
+              <img className='imagePreview' src={coverImage.urls.regular} alt='cover' />
             </div>
           ) : (
               <div className='noImageDiv poppins-black'>

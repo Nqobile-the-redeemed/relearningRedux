@@ -331,7 +331,13 @@
   background-color: #ebebeb;
 }
 
-.imagePreview {}
+.imagePreview {
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+  border-radius: 16px;
+}
 
 .imageSelectionSection {
   display: flex;

@@ -5,6 +5,9 @@ function BlogCards({postData}) {
     <div>
         <div className='cardBody'>
             <div className='cardContents' >
+              <div className='cardImageHolder'>
+                <img className='cardImage' src={postData.coverImage.urls.regular} alt='cover' />
+              </div>
                 <div className='textHolder'>
                     <h2 className='cardTitle'>{postData.title}</h2>
                     <p className='postText' >{postData.content}</p>
