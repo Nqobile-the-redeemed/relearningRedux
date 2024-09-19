@@ -1,8 +1,8 @@
-import React from 'react'
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { postBlog } from '../features/blogs/blogsSlice';
 import ImageSelectionSection from './ImageSelectionSection';
+
 
 function BlogCreator({ blogDataBase}) {
 
@@ -17,6 +17,13 @@ function BlogCreator({ blogDataBase}) {
       content: '',
       coverImage: coverImage
     })
+
+    useEffect(() => {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        coverImage: coverImage
+      }));
+    }, [coverImage]);
   
     const handleChange = (e) => {
       setFormData({
@@ -36,7 +43,9 @@ function BlogCreator({ blogDataBase}) {
         title: '',
         content: '',
         coverImage: coverImage
-      })
+      });
+      // Reset coverImage to null
+      setCoverImage(null);
     }
 
   return (
